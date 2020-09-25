@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {MDBAnimation} from 'mdbreact';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText } from 'mdbreact';
+import skyscraperJpg from './skyscraper.jpg'
 
 class CustomCard extends Component{
     state = {
@@ -13,7 +14,7 @@ class CustomCard extends Component{
         return(
             <MDBAnimation type={this.props.animation} reveal>
                 <MDBCard>
-                    <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" waves />
+                    <MDBCardImage className="img-fluid" src={skyscraperJpg} waves />
                     <MDBCardBody>
                     <MDBCardTitle>{this.props.title}</MDBCardTitle>
                     <MDBCardText>
