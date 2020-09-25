@@ -6,19 +6,9 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover'
 import { Container, Card, Jumbotron, Row, Col } from 'react-bootstrap';
 import {MDBAnimation} from 'mdbreact';
- 
+import CustomCard from '../components/Card/Card';
+
 function App() {
-  const edabitPopover = (
-    <Popover>
-      <Popover.Title></Popover.Title>
-      <Popover.Content>
-          Edabit is a site dedicated to interactive coding challenges. 
-          <br/>
-          <br/>
-          &#11088; Compare solutions and improve! &#11088;
-      </Popover.Content>
-    </Popover>
-  )
   const reactBootstrapPopover = (
     <Popover>
       <Popover.Title></Popover.Title>
@@ -50,10 +40,7 @@ function App() {
             <br/>
             <br/>Built with React-Bootstrap and Material-Design-Bootstrap (MDB). It's filled with content I learn from Edabit. 
           </p>
-          <MDBAnimation reveal type="pulse" delay={10000}>
-            <OverlayTrigger trigger="click" placement="top" overlay={edabitPopover}>
-                <Button variant="success" className="mr-1">What is Edabit?</Button>
-            </OverlayTrigger>
+          <MDBAnimation reveal type="pulse">
             <OverlayTrigger trigger="click" placement="top" overlay={reactBootstrapPopover}>
               <Button variant="success" className="mr-1">Why use both libraries?</Button>
             </OverlayTrigger>
@@ -65,134 +52,35 @@ function App() {
         <Container>
           <Row className="mb-4">
             <Col xs={12} md={4}>
-              <MDBAnimation type="fadeInLeft" reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInLeft' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
             <Col xs={12} md={4}>
-              <MDBAnimation type='fadeIn' reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeIn' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
             <Col xs={12} md={4}>
-              <MDBAnimation type='fadeInRight' reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInRight' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
           </Row>
           <Row className="mb-4">
             <Col xs={12} md={4}>
-              <MDBAnimation type="fadeInLeft" reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInLeft' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
             <Col xs={12} md={4}>
-              <MDBAnimation type='fadeInUp' reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInUp' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
             <Col xs={12} md={4}>
-              <MDBAnimation type='fadeInRight' reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInRight' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
           </Row>
           <Row className="mb-4">
             <Col xs={12} md={4}>
-              <MDBAnimation type="fadeInLeft" reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInLeft' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
             <Col xs={12} md={4}>
-              <MDBAnimation type='fadeInUp' reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInUp' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
             <Col xs={12} md={4}>
-              <MDBAnimation type='fadeInRight' reveal>
-              <Card>
-                <Card.Header>Header</Card.Header>
-                <Card.Body>
-                  <Card.Title> Card Title </Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk
-                    of the card's content.
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-              </MDBAnimation>
+              <CustomCard animation='fadeInRight' date='September 24th 2020' title='Edabit Challenge' text=''/>
             </Col>
           </Row>
         </Container>
