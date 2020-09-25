@@ -13,14 +13,13 @@ class CustomCard extends Component{
     render(){
         return(
             <MDBAnimation type={this.props.animation} reveal>
-                <MDBCard>
+                <MDBCard style={{minHeight: '300px'}}>
                     <MDBCardImage className="img-fluid" src={skyscraperJpg} waves />
                     <MDBCardBody>
                     <MDBCardTitle>{this.props.title}</MDBCardTitle>
                     <MDBCardText>
                         {this.props.text}
                     </MDBCardText>
-                        <MDBBtn>Learning Notes</MDBBtn>
                         <MDBBtn>Learning Notes</MDBBtn>
                     </MDBCardBody>
                 </MDBCard>
