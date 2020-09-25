@@ -18,7 +18,7 @@ class ReactBootstrapNavbar extends Component{
         }
         return(
             <Router>
-                <MDBNavbar expand='lg'>
+                <MDBNavbar dark fixed='top' className='elegant-color' expand='lg'>
                     <MDBNavbarBrand>Edabit Learning</MDBNavbarBrand>
                     <MDBNavbarToggler className='navbar-light' onClick={this.toggleCollapse} />
                     <MDBCollapse navbar isOpen={this.state.open}>
