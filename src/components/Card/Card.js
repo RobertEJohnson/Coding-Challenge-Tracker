@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {MDBAnimation} from 'mdbreact';
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText } from 'mdbreact';
-import skyscraperJpg from './skyscraper.jpg'
+import skyscraperJpg from './skyscraper.jpg';
 
 class CustomCard extends Component{
     state = {
@@ -11,16 +11,19 @@ class CustomCard extends Component{
         animation: this.props.animation
     }
     render(){
+    const cardStyle = {
+        minHeight: '300px'
+    }
         return(
             <MDBAnimation type={this.props.animation} reveal>
-                <MDBCard style={{minHeight: '300px'}}>
+                <MDBCard style={cardStyle}>
                     <MDBCardImage className="img-fluid" src={skyscraperJpg} waves />
                     <MDBCardBody>
-                    <MDBCardTitle>{this.props.title}</MDBCardTitle>
+                    <MDBCardTitle>{this.props.date}</MDBCardTitle>
                     <MDBCardText>
-                        {this.props.text}
+                        
                     </MDBCardText>
-                        <MDBBtn>Learning Notes</MDBBtn>
+                        <MDBBtn>Show This Week</MDBBtn>
                     </MDBCardBody>
                 </MDBCard>
           </MDBAnimation>
