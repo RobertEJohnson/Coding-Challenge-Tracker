@@ -1,12 +1,35 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Navbar from '../components/Navbar/Navbar';
-import { Row, Col } from 'react-bootstrap';
-import CustomCard from '../components/Card/Card';
+import ChallengesContainer from '../components/ChallengesContainer/ChallengesContainer';
+import TrackingCharts from '../components/TrackingCharts/TrackingCharts';
 import PopoverButton from '../components/PopoverButton/PopoverButton';
-import { MDBAnimation, MDBContainer, MDBJumbotron } from "mdbreact";
+import { MDBAnimation, MDBBtnGroup, MDBBtn, MDBRow, MDBCol, MDBJumbotron } from "mdbreact";
 
-function App() {
+class App extends Component{
+  state={
+    showChallenges: true,
+    showCharts: false
+  }
+  handleChallenges=()=>{
+    this.setState({
+      showCharts: false,
+      showChallenges: !this.state.showChallenges,
+    })
+  }
+  handleCharts=()=>{
+    this.setState({
+      showChallenges: false,
+      showCharts: !this.state.showCharts,
+    })
+  }
+  render(){
+    const codingChallengesText = 
+      'I am tracking progress from CodeWars, Edabit, and LeetCode. They are sites with awesome interactive coding challenges!';
+    const learnMDBText =
+      'For fun! I love Bootstrap and I love Material-UI, it seemed like the natural next step to experiment with MDB.';
+    const practiceGroundsText =
+      "I'm learning WordPress right now as well! Companies I love use it, and nearly 30% of all sites operate on the WordPress CMS!";
   return (
     <div className="App">
         <Navbar/>
@@ -14,52 +37,49 @@ function App() {
           <h1>Hey Welcome to my Practice Grounds!</h1>
           <p>Or one of them really.
             <br/>
-            <br/>Built with Material-Design-Bootstrap (MDB). It's filled with content I learn from Edabit. 
+            <br/>Built with Material-Design-Bootstrap (MDB). It's filled with some tracking information of various coding challenges.. 
           </p>
-          <MDBAnimation reveal type="pulse">
-            <PopoverButton title='What is Edabit?' text='Edabit is a site devoted to interactive coding challenges. It is similar to CodeWars and LeetCode.'/>
-            <PopoverButton title='Why Learn MDB?' text='I love Bootstrap and I love Material-UI, it seemed like the natural next step to experiment with MDB.'/>
-            <PopoverButton title='Other Practice Grounds?' text="I'm learning WordPress right now as well! Companies I love use it, and nearly 30% of all sites operate on the WordPress CMS!"/>
+          <MDBAnimation reveal delay='.3s' type="fadeIn" className='inline-block'>
+            <PopoverButton title='Coding Challenges?' text={codingChallengesText}/>
           </MDBAnimation>
+          <MDBAnimation reveal delay='.45s' type="fadeIn" className='inline-block'>
+            <PopoverButton title='Why Learn MDB?' text={learnMDBText}/>
+          </MDBAnimation>
+            <MDBAnimation reveal delay='.6s' type="fadeIn" className='inline-block'>
+              <PopoverButton title='Other Practice Grounds?' text={practiceGroundsText}/>
+            </MDBAnimation>
         </MDBJumbotron>
-        <MDBContainer>
-          <Row className="mb-4">
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInLeft' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeIn' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInRight' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInLeft' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInUp' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInRight' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-          </Row>
-          <Row className="mb-4">
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInLeft' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInUp' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-            <Col xs={12} md={4}>
-              <CustomCard animation='fadeInRight' date='September 24th 2020' title='Edabit Challenge' text=''/>
-            </Col>
-          </Row>
-        </MDBContainer>
-
+        <MDBRow>
+          <MDBCol md='12' className="mb-4">
+            <MDBBtnGroup size="lg">
+              <MDBBtn color="amber"
+                onClick={this.handleChallenges} active={this.state.showChallenges}>Weekly Recap and Challenges</MDBBtn>
+              <MDBBtn color="amber" {...this.state.showCharts}
+                onClick={this.handleCharts} active={this.state.showCharts}>Tracking Charts</MDBBtn>
+            </MDBBtnGroup>
+          </MDBCol>
+        </MDBRow>
+        {
+          this.state.showChallenges ? 
+            <>
+              <ChallengesContainer/>
+            </>
+              :
+            <>
+            </>
+        }
+        {
+          this.state.showCharts ? 
+            <>
+              <TrackingCharts/>
+            </>
+              :
+            <>
+            </>
+        }
     </div>
   );
+  }
 }
 
 export default App;
