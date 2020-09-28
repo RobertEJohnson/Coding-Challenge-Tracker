@@ -1,11 +1,11 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
+import { MDBContainer, MDBCard, MDBCardBody, MDBCardHeader, MDBAnimation } from "mdbreact";
 
-class ChartsPage extends React.Component {
+class YearlyCharts extends React.Component {
   state = {
     dataLine: {
-      labels: ["Week 1","Week 2", "Week 3", "Week 4", "Week 5"],
+      labels: ["October 2020","November", "December", "January", "February", "March", "April", "May", "June", "July", "August", "September 2021"],
       datasets: [
         {
           label: "CodeWars",
@@ -51,20 +51,24 @@ class ChartsPage extends React.Component {
     },
     chartOptions: { 
         responsive: true, 
-        scales: { yAxes: [ { ticks: { max: 50, min: 0 } } ] }
+        scales: { yAxes: [ { ticks: { max: 70, min: 0 } } ] }
     }
   };
 
   render() {
     return (
-      <MDBContainer>
-        <h3>Completed Challenges This Month</h3>
-        <Line data={this.state.dataLine} options={this.state.chartOptions} />
-        <h4 className='mt-4'>Completed Challenges This Year</h4>
-        <Line data={this.state.dataLine} options={this.state.chartOptions} />
+      <MDBContainer className='mb-4'>
+        <MDBAnimation type='fadeIn' delay='.1s'>
+          <MDBCard>
+              <MDBCardHeader>Completed Challenges this Year</MDBCardHeader>
+              <MDBCardBody>
+                <Line data={this.state.dataLine} options={this.state.chartOptions} />
+              </MDBCardBody>
+          </MDBCard>
+        </MDBAnimation>
       </MDBContainer>
     );
   }
 }
 
-export default ChartsPage;
+export default YearlyCharts;
