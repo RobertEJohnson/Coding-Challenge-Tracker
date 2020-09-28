@@ -2,26 +2,42 @@ import React, {Component} from 'react';
 import './App.css';
 import Navbar from '../components/Navbar/Navbar';
 import ChallengesContainer from '../components/ChallengesContainer/ChallengesContainer';
-import TrackingCharts from '../components/TrackingCharts/TrackingCharts';
+import YearlyCharts from '../components/YearlyCharts/YearlyCharts';
 import PopoverButton from '../components/PopoverButton/PopoverButton';
 import { MDBAnimation, MDBBtnGroup, MDBBtn, MDBRow, MDBCol, MDBJumbotron } from "mdbreact";
 
 class App extends Component{
   state={
-    showChallenges: true,
-    showCharts: false
+    showMonthlyCharts: true,
+    showYearlyCharts: false,
+    showRecaps: false
   }
   handleChallenges=()=>{
-    this.setState({
-      showCharts: false,
-      showChallenges: !this.state.showChallenges,
+    if(!this.state.showMonthlyCharts){
+      this.setState({
+      showYearlyCharts: false,
+      showRecaps: false,
+      showMonthlyCharts: true,
     })
+    }
   }
   handleCharts=()=>{
-    this.setState({
-      showChallenges: false,
-      showCharts: !this.state.showCharts,
+    if(!this.state.showYearlyCharts){
+      this.setState({
+      showMonthlyCharts: false,
+      showRecaps: false,
+      showYearlyCharts: true,
     })
+    }
+  }
+  handleRecaps=()=>{
+    if(!this.state.showRecaps){
+      this.setState({
+      showYearlyCharts: false,
+      showMonthlyCharts: false,
+      showRecaps: true,
+    })
+    }
   }
   render(){
     const codingChallengesText = 
@@ -51,16 +67,18 @@ class App extends Component{
         </MDBJumbotron>
         <MDBRow>
           <MDBCol md='12' className="mb-4">
-            <MDBBtnGroup size="lg">
+            <MDBBtnGroup size="md">
+            <MDBBtn color="amber"
+                onClick={this.handleRecaps} active={this.state.showRecaps}>Challenges and Reflections</MDBBtn>
               <MDBBtn color="amber"
-                onClick={this.handleChallenges} active={this.state.showChallenges}>Weekly Recap and Challenges</MDBBtn>
-              <MDBBtn color="amber" {...this.state.showCharts}
-                onClick={this.handleCharts} active={this.state.showCharts}>Tracking Charts</MDBBtn>
+                onClick={this.handleChallenges} active={this.state.showMonthlyCharts}>Monthly Tracking Charts</MDBBtn>
+              <MDBBtn color="amber" {...this.state.showYearlyCharts}
+                onClick={this.handleCharts} active={this.state.showYearlyCharts}>Yearly Tracking Chart</MDBBtn>
             </MDBBtnGroup>
           </MDBCol>
         </MDBRow>
         {
-          this.state.showChallenges ? 
+          this.state.showMonthlyCharts ? 
             <>
               <ChallengesContainer/>
             </>
@@ -69,9 +87,9 @@ class App extends Component{
             </>
         }
         {
-          this.state.showCharts ? 
+          this.state.showYearlyCharts ? 
             <>
-              <TrackingCharts/>
+              <YearlyCharts/>
             </>
               :
             <>
