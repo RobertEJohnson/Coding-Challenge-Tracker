@@ -1,6 +1,18 @@
 site_name: Challenge Documentation
-theme: 
-    name: flatly
+extra_css: 
+    - stylesheets/extra.css
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: blue grey
+    accent: teal
+
+markdown_extensions:
+    - attr_list
+    - pymdownx.tabbed
+    - pymdownx.superfences
 
 nav:
     - Home: index.md
