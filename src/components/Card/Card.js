@@ -19,11 +19,8 @@ class CustomCard extends Component{
                 <MDBCard style={cardStyle}>
                     <MDBCardImage className="img-fluid" src={skyscraperJpg} waves />
                     <MDBCardBody>
-                    <MDBCardTitle>{this.props.date}</MDBCardTitle>
-                    <MDBCardText>
-                        
-                    </MDBCardText>
-                        <MDBBtn>Show This Week</MDBBtn>
+                        <MDBCardTitle>Week <br/>{this.props.date}</MDBCardTitle>
+                        <MDBBtn >Show This Week</MDBBtn>
                     </MDBCardBody>
                 </MDBCard>
           </MDBAnimation>
