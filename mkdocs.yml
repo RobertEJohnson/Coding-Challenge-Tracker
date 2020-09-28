@@ -1,0 +1,8 @@
+site_name: Challenge Documentation
+theme: 
+    name: flatly
+
+nav:
+    - Home: index.md
+    - Weekly Recaps:
+        - 1. Sept 28th - Oct 4th : 'weeklyRecaps/week1.md'
