@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar/Navbar';
 import ChallengesContainer from '../components/ChallengesContainer/ChallengesContainer';
 import YearlyCharts from '../components/YearlyCharts/YearlyCharts';
 import PopoverButton from '../components/PopoverButton/PopoverButton';
-import { MDBAnimation, MDBBtnGroup, MDBBtn, MDBRow, MDBCol, MDBJumbotron } from "mdbreact";
+import { MDBAnimation, MDBBtnGroup, MDBBtn, MDBRow, MDBCol, MDBJumbotron, MDBContainer } from "mdbreact";
 
 class App extends Component{
   state={
@@ -40,6 +40,12 @@ class App extends Component{
     }
   }
   render(){
+    const chartBtnStyle = {
+      width: '188px'
+    }
+    const challengeLinkStyle={
+      textDecoration: 'underline',
+    }
     const codingChallengesText = 
       'I am tracking progress from CodeWars, Edabit, and LeetCode. They are sites with awesome interactive coding challenges!';
     const learnMDBText =
@@ -47,7 +53,7 @@ class App extends Component{
     const practiceGroundsText =
       "I'm learning WordPress right now as well! Companies I love use it, and nearly 30% of all sites operate on the WordPress CMS!";
   return (
-    <div className="App">
+    <MDBContainer className="App">
         <Navbar/>
         <MDBJumbotron className='mt-5'>
           <h1>Hey Welcome to my Practice Grounds!</h1>
@@ -68,14 +74,18 @@ class App extends Component{
         <MDBRow>
           <MDBCol md='12' className="mb-4">
             <MDBBtnGroup size="md">
-            <MDBBtn color="amber"
-                onClick={this.handleRecaps} active={this.state.showRecaps}>Challenges and Reflections</MDBBtn>
-              <MDBBtn color="amber"
-                onClick={this.handleChallenges} active={this.state.showMonthlyCharts}>Monthly Tracking Charts</MDBBtn>
-              <MDBBtn color="amber" {...this.state.showYearlyCharts}
-                onClick={this.handleCharts} active={this.state.showYearlyCharts}>Yearly Tracking Chart</MDBBtn>
+              <MDBBtn color="amber" style={chartBtnStyle}
+                onClick={this.handleChallenges} active={this.state.showMonthlyCharts}>Monthly Charts</MDBBtn>
+              <MDBBtn color="amber" style={chartBtnStyle}
+                onClick={this.handleCharts} active={this.state.showYearlyCharts}>Annual Charts</MDBBtn>
             </MDBBtnGroup>
+            <br/>
+            <a style={challengeLinkStyle} href="http://127.0.0.1:8000/" target="_blank">View challenge documentation?</a>
           </MDBCol>
+            
+        </MDBRow>
+        <MDBRow>
+      
         </MDBRow>
         {
           this.state.showMonthlyCharts ? 
@@ -95,7 +105,7 @@ class App extends Component{
             <>
             </>
         }
-    </div>
+    </MDBContainer>
   );
   }
 }
