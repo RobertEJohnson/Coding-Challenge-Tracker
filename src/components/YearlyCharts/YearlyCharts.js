@@ -60,7 +60,10 @@ class YearlyCharts extends React.Component {
       <MDBContainer className='mb-4'>
         <MDBAnimation type='fadeIn' delay='.1s'>
           <MDBCard>
-              <MDBCardHeader>Completed Challenges this Year</MDBCardHeader>
+              <MDBCardHeader>
+                Completed Challenges this Year
+                <br/>October 2020 - September 2021
+              </MDBCardHeader>
               <MDBCardBody>
                 <Line data={this.state.dataLine} options={this.state.chartOptions} />
               </MDBCardBody>
