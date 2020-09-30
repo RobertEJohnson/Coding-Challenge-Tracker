@@ -16,139 +16,191 @@
 
 === "Code Challenge"
 
-    **Challenge:** *Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.* 
+    **Challenge:**  
+    Create a function that takes two strings as arguments and returns the number of times the first string (the single character) is found in the second string.
 
-    Examples:
+    **Examples:**
 
-        minMax([1, 2, 3, 4, 5]) ➞ [1, 5]   
-        minMax([2334454, 5]) ➞ [5, 2334454]
-        minMax([1]) ➞ [1, 1]
+        charCount("a", "edabit") ➞ 1
+        charCount("c", "Chamber of secrets") ➞ 1
+        charCount("b", "big fat bubble") ➞ 4
 
-        Notes: All arrays will have at least one element and contain valid numbers.
+        Notes: Your output must be case-sensitive (see second example).
 
 === "Solution"
     
-    **Solution:** Notes about solution here: 
+    **Solution:** Here is my first solution!
 
-        My first solution
+        function charCount(myChar, str){
+            let count = 0;
+            for(character of str){
+                if(character === myChar){
+                    count++;
+                }
+            }
+            return count;
+        }
 
-    After seeing some of the other participants solutions I adapted my solution to be
+    After seeing some other solutions I realized I've completely forgotten about the `filter` array method, I really haven't used it much!
+    My updated solution is:
 
-        My second solution
+        function charCount(myChar, str){
+	        return [...str].filter(character => myChar === character).length;
+        }
+
+    Spreading the string into an array to use it feels great.
 
 === "Learning Notes"
 
-    **New things I've learned:**
+    **Learning Notes:**
 
-    >Checkout all these cool new things I've learned!
+    >I got a some more practice with the filter array method! 
+    >I wasn't super familiar with it, but it really came in clutch here.
 
-    >I never thought to use x in y way before! That's so clever!  
-    >Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
+    >My general updated understanding of .filter() is, it's a method that returns a new array contains
+    >all elements from the original array that pass the set condition! Nifty!
 
-=== "Reflections"
+    >Awesome practice with .filter()!
 
-    **Positives:**
-
-    > I'm seeing a lot of positives.
-
-    **Negatives:**
-
-    > I also noticed a few negatives.
-
-    **Moving Forward:**
-
-    > Here's my plan for the future.
-
-### Challenge #2 {: .challenge .challenge--codewars}
+### Challenge #2 {: .challenge .challenge--edabit}
 
 === "Code Challenge"
 
-    **Challenge:** *Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.* 
+    **Challenge:**  
+    Create a function that returns the last value of the last item in an array or string.
 
-    Examples:
+    **Examples:**
 
-        minMax([1, 2, 3, 4, 5]) ➞ [1, 5]   
-        minMax([2334454, 5]) ➞ [5, 2334454]
-        minMax([1]) ➞ [1, 1]
-
-        Notes: All arrays will have at least one element and contain valid numbers.
+        lastItem([0, 4, 19, 34, 50, -9, 2]) ➞ 2
+        lastItem("The quick brown fox jumped over the lazy dog") ➞ "g"
+        lastItem([]) ➞ undefined   
 
 === "Solution"
     
-    **Solution:** Notes about solution here: 
+    **Solution:** My first solution: 
 
-        My first solution
+        function lastItem(input) {
+            if(input.length <= 0){
+                return undefined;
+            }
+            else{
+                lastElement = input[input.length-1];
+            }
 
-    After seeing some of the other participants solutions I adapted my solution to be
+            return lastElement.length >= 2 ? lastElement[lastElement.length-1] : lastElement
+        }
 
-        My second solution
+    This solution worked well, but wasn't completing one of the pre-written tests.
+
+    The question said:  
+    Create a function that returns ```the last value of the last item``` in an array or string.
+
+    What they actually meant was:  
+    Create a function that returns ```the last value``` of an array or a string.
+
+    The tests were built in a way that ```['one','two','three']``` should be parsed and return ```'three'```  
+    I was returning the last value of the last item so ```'three'``` became ```'e'```. 
+
+    My updated solution:
+
+        function lastItem(input) {
+            return input[input.length-1];
+        }
+
 
 === "Learning Notes"
 
-    **New things I've learned:**
+    **Learning Notes:**
 
-    >Checkout all these cool new things I've learned!
+    >I think my main take away from this challenge is to read the tests.
 
-    >I never thought to use x in y way before! That's so clever!  
-    >Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
+    >The question could've been worded better but reading the tests can give me a  
+    >better idea of what I should be building in the first place. I might not account  
+    >for a input type that a test will test for, so I might as well start with reading them,  
+    >I'll have better quality solutions. 
 
-=== "Reflections"
+    >Also I'll start getting more ideas for the tests I write.
 
-    **Positives:**
-
-    > I'm seeing a lot of positives.
-
-    **Negatives:**
-
-    > I also noticed a few negatives.
-
-    **Moving Forward:**
-
-    > Here's my plan for the future.
-
-### Challenge #3 {: .challenge .challenge--leetcode}
+### Challenge #3 {: .challenge .challenge--edabit}
 
 === "Code Challenge"
 
-    **Challenge:** *Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.* 
+    **Challenge:**    
+    Create a function that takes a number as an argument. Add up all the numbers from 1 to the number you passed to the function. For example, if the input is 4 then your function should return 10 because 1 + 2 + 3 + 4 = 10.
 
-    Examples:
+    **Examples:**
 
-        minMax([1, 2, 3, 4, 5]) ➞ [1, 5]   
-        minMax([2334454, 5]) ➞ [5, 2334454]
-        minMax([1]) ➞ [1, 1]
-
-        Notes: All arrays will have at least one element and contain valid numbers.
+        addUp(4) ➞ 10
+        addUp(13) ➞ 91
+        addUp(600) ➞ 180300
+        
+        Notes: Expect any positive number between 1 and 1000.
 
 === "Solution"
     
-    **Solution:** Notes about solution here: 
+    **Solution:** Here's my first take at this:
 
-        My first solution
+        function addUp(num) {
+            let counter = 0;
+            sum = 0;
+            while(counter <= num){
+                sum += counter;
+                counter ++;
+            }
+            return sum;
+        }
+  
+    I'm not stoked about a while loop though, so I'm going to rework it a bit. Here's my now second attempt.
 
-    After seeing some of the other participants solutions I adapted my solution to be
+        function addUp(num) {
+            let sum = 0;
+            for(let i=1; i<=num; i++){
+                sum += i;
+            }
+            return sum;
+        }
 
-        My second solution
+    There we go, so the above removed a while loop and condensed it a little bit, woot. 
+    
+    This addition problem would be a great problem for recursion I'm sure.
+    Not very familiar with recursion yet, but I'm going to check out some others' solutions and see what I learn from their solutions.
+
+        function addUp(num) {
+            return (num * (num + 1))/2;
+        }
+    
+    The above answer (some one elses solution not mine) really intriques me. I'm guessing this is a common math algorithm people are familiar with, because I have no idea of the thought process taken to get this answer. But it did spark some thoughts for me which I'll take about in the learning notes. The other answers contain recursion which I'll have to dig into more later!
 
 === "Learning Notes"
 
-    **New things I've learned:**
+    **Learning Notes:**
 
-    >Checkout all these cool new things I've learned!
+    >Wow this problem stumped me. Not even because of its difficulty but rather my perception of its difficulty.
+    >I don't like that my first response was a little bit locked up. It's too bad because taking off some of the
+    >tension I was able to make a (in my opinion) better solution, I'm usually pretty good at not getting pushed off-center
+    >but I fell off that horse a bit here.
 
-    >I never thought to use x in y way before! That's so clever!  
-    >Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
+    >This answer:   function addUp(num) {
+    >                  return (num * (num + 1))/2;
+    >               }
 
-=== "Reflections"
+    >I'm curious at how it was obtained without knowing a prior formula. But I have gleaned a few things from this. Some of which I will talk about in the reflections, but one main thing for a learning note here is 'Keep it simple'.
 
-    **Positives:**
+    >I think my mind fluttered a bit because I started thinking about all of this addition and trying to
+    >come up with a good solution through being able to hold the entire problem in my head. I'd assume this most certainly is
+    >not what whoever came up with (num * (num + 1))/2 did. If I had started simpler like from 1-3 rather than 1-100 it really
+    >could have helped me identify a pattern to work with, and that would help develop a better solution. I kept it too big and
+    >didn't break it into small pieces, because at first it didn't seem like a tough task.
 
-    > I'm seeing a lot of positives.
+---
 
-    **Negatives:**
+### Final Challenge Reflections
 
-    > I also noticed a few negatives.
+Lots of things here!
 
-    **Moving Forward:**
+Assuming this Challenge #3 be easier than it was originally for me kept me from identifying/checking in with myself when I was struggling.
+I didn't step back to recalibrate because I was frustrated with myself for not coming up with a solution, then I didn't come up with a solution I really liked much. I usually don't struggle with the frustration of not figuring things out, but I can identify a few core problem causers here. Firstly, my own self-expectation of doing something I thought would be easy kept from adapting and held me back when it proved to be difficult. The standard I hold myself to ended up defeating me, I'm an 'accomplisher' then fell because I didn't meet my own terms of 'accomplishing' tasks. 
 
-    > Here's my plan for the future.
+Which brings me to my second reflection. My ambitions need a little more tuning. I'm all for getting things done and making awesome things! I love it so much. But maybe it would be better to work from a place that doesn't disable me if I'm not able to meet those ambitions. I'm not sure where that is at the moment but I think it has to do with more putting more enjoyment in the crafting of solutions and learning new things than it the fulfillment of either of those things. All of these things are good, but I love learning as it is so why not have more of my inner values surround learning as opposed to slightly more vague things like master or accomplishment. I love both of those things but I may end up curtailing myself (and in return both of those things) if I try to brute force my way to them. Why not approach problems with a greater sense of humility and a larger excitement around learning and experimenting rather than having focus around whether or not I can do it to a certain standard.
+
+Also I'm sure I'll be a lot lighter of a person with that adjustment, who doesn't want to be around someone who is just loving on life and learning. It's a lot more freeing of an approach.
