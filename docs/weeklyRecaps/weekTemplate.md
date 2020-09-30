@@ -38,23 +38,13 @@
 
 === "Learning Notes"
 
-    **New things I've learned:**
+    **Learning Notes:**
 
     >Checkout all these cool new things I've learned!
 
     >I never thought to use x in y way before! That's so clever!  
     >Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
 
-=== "Reflections"
 
-    **Positives:**
+### Reflections
 
-    > I'm seeing a lot of positives.
-
-    **Negatives:**
-
-    > I also noticed a few negatives.
-
-    **Moving Forward:**
-
-    > Here's my plan for the future.
