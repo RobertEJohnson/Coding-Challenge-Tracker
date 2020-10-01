@@ -192,6 +192,72 @@
     >could have helped me identify a pattern to work with, and that would help develop a better solution. I kept it too big and
     >didn't break it into small pieces, because at first it didn't seem like a tough task.
 
+### Challenge #4 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Help fix all the bugs in the function ```incrementItems```! It is intended to add 1 to every element in the array!
+
+    Problem Code:
+
+        function incrementItems(arr) {
+            for (let i = 0; i < array.length; i++)
+                arr[i] === arr[i] + 1
+            return array
+        }
+
+    Examples:
+
+        incrementItems([0, 1, 2, 3]) ➞ [1, 2, 3, 4]
+        incrementItems([2, 4, 6, 8]) ➞ [3, 5, 7, 9]
+        incrementItems([-1, -2, -3, -4]) ➞ [0, -1, -2, -3]
+
+
+=== "Solution"
+    
+    **Solution:** Trying to only solve bugs and not refactor layout, this is my solution: 
+
+        function incrementItems(arr) {
+            for (let i = 0; i < arr.length; i++){
+                arr[i] = arr[i] + 1;
+            }
+            return arr;
+        }
+
+    If I were also adjusting layout, I would add a ```+=``` instead of ```arr[i] + 1```. I'm not a big fan of using ```arr``` as a parameter name, ```array``` isn't the best alternative because it's really close to the keyword ```Array```, that'll get confusing the moment we start using methods. So I'd say a good alternative would be ```inputArray``` or something similar to name the parameter. A few extra characters is always worth it for readability, you can minify the files later anyway.
+
+    This code doesn't take into account if a user were to pass in data types that aren't numbers. This is something that also should be checked for, we could throw a conditional inside of the for loop with the typeof operator, something like this does the trick...
+
+        for (let i = 0; i < arr.length; i++){
+                if(typeof(arr[i]) === 'number'){
+                    arr[i] = arr[i] + 1;
+                }
+                else{
+                    alert('When using the incrementItems function, please use arrays that contain ONLY numbers');
+                    return;
+                }
+            }
+        return arr;
+
+    
+
+=== "Learning Notes"
+
+    **Learning Notes:**
+
+    >I really wanted to use a ternary operator here, but realized I would have to be returning within the false condition only which won't work. I read up upon why exactly this doesn't work and it has to do with statements vs. expressions. Essentially expressions (such as ternary operators) **have to produce a value**. Meanwhile statements (like a return) **perform an action**. 
+
+    >Expressions can be used as statements, but unfortunately statements cannot be used as expressions.
+
+    >A ternary operator is an expression, It is ```(condition expression) ? (true expression) : (false expression)``` it has to **produce a value**. A statement like ```return``` stops that producing a value from ever happening. It says do this. An if statement is ```if(expression){statement}```
+
+    >It's logical to me that I CANNOT write the expression of an if statement as ```if(return 'hello world')```. Why is this? I have no way to evaluate that expression because the return statement is doing a separate thing. It's not actually producing a value, its performing an action, so the expression condition is not met. By using a return statement in a ternary operator I was trying to do the same thing. The reason *it works* in an if **statement** is because the code block is just that, a statement. I'm quite positive the the other way to say ternary operator is ternary expression, it doesn't replace the expression with a statement, it has to ultimately be an expression.
+
+
+    >Maybe I should make a memory mnemonic to help remember the relationship between expressions and statements... how about... expressing, two s's (ss) because it can do both expressing and statements. Statements have no repeating letters because it cannot do both. That sorta works, I'll stick with that for now.
+
+
 ---
 
 ### Final Challenge Reflections
