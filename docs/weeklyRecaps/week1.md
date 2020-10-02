@@ -359,7 +359,80 @@
 
     >I think that the first solution here ```str => () => str``` to me is getting away from that very quick readability, so I should've just condensed the anonymous function of my own updated answer to the second answer here ```return () => str```.
 
+### Challenge #7 {: .challenge .challenge--edabit}
 
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function that takes an array of integers, sums the even and odd numbers separately, then returns the larger of the sums minus the smaller.
+
+    Examples:
+
+        warOfNumbers([2, 8, 7, 5]) ➞ 2
+        // 2 + 8 = 10
+        // 7 + 5 = 12
+        // 12 is larger than 10
+        // So we return 12 - 10 = 2
+
+        warOfNumbers([12, 90, 75]) ➞ 27
+
+        warOfNumbers([5, 9, 45, 6, 2, 7, 34, 8, 6, 90, 5, 243]) ➞ 168
+
+        Notes:
+        No Notes.
+
+=== "Solution"
+    
+    **Solution:**  
+    My first solution: 
+
+        function warOfNumbers(arr) {
+            let evens = 0, odds = 0;
+            arr.forEach(num=>{
+                num % 2 === 0 ? evens+=num: odds+=num;
+            })
+            return Math.max(evens, odds) - Math.min(evens, odds)
+        }
+
+    I'm positive there has to be a better way to do this with ```.reduce()``` but I've only used that method a few times without having to keep track of two sets of numbers, I can't wait to see other people's solutions though! I'm sure someone has used it really cleverly and will teach me a thing or two.
+
+    I'm not crazy about this part of my solution
+
+        Math.max(evens, odds) - Math.min(evens, odds)
+
+    There must be a quicker way to determine if one of the values is the max the other must be the min without having to run both ```Math.max()``` and ```Math.min()```.
+
+    The only other notes I see about my current solution is that I didn't account for negative numbers or other data types since I looked at the tests and saw there were none, but I should've probably still implemented fail safes since there weren't notes saying there would never be them passed in.
+
+    After checking some of the other solutions, I found what I was looking for! ```Math.abs()```! *Since I'm not dealing with negative numbers*, I could've used ```Math.abs()``` to sidestep having to determine if ```evens``` or ```odds``` is larger/smaller. With ```Math.abs(evens-odds)``` it doesn't matter which is smaller or larger and I will always get the correct leftover positive sum, even if they're equal numbers! So cool!
+
+    Also someone most certainly used ```.reduce()``` in a way that works for this. Check this out.
+
+        const warOfNumbers = arr => Math.abs(arr.reduce((a, b) => a + (b%2 ? b : -b), 0));
+
+    ```b``` (the current value) is run through a check ```b % 2 ? b : -b;``` if ```b``` is even it stays as ```b``` (since it evaluates to a falsy value) else it becomes ```-b```.
+
+    The positive or negative charge of the current values is just a clever way to basically make sure that all types of one kind (odds in this case) are added together while the remaining type (evens) will be subtracted from the other type rather than added. Combined with ```Math.abs()``` and only inputting positive numbers we we never really have to keep track of two numbers! No matter if the smaller subtracts the larger or vice-versa we will have the answer as if the larger subtracted the smaller. 
+
+    Niiiiiccceeeeeeeee.
+
+
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >Wow! That was awesome. I feel a lot more comfortable with ```reduce()``` after digging into a bit more and then seeing that fun solution. 
+
+    >What originally turned me away from ```reduce()``` and rather into ```forEach()``` was that I didn't know how I could accumulate something when I needed to track two separate values, evens and odds. 
+    
+    >I love that the solution other people came up with sidestepped that whole issue. They just made one number you have to keep track of by accumulating but *adding to the accumulator for one type (odds)* and *subtracting from the accumulator for the other type (evens)*. Then just using ```Math.abs()``` to make sure the final sum charge is right. That's a brilliant solution, I'm still not sure what another one-and-done approach would be if we had to account negative numbers as well.
+
+    >What brought these other people to figure out this solution where I didn't and how can I improve?
+
+    >I think the first thing is, ask the next question. I never asked, "Is there any way I can make these two numbers I have to accumulate into one number?". I still don't think in this particular case I would've came up with the solution to use ```Math.abs()```, but I still would've had a *chance* to come up with a different solution. If I would've just asked the question to the immediate problem I was encountering rather than thinking it couldn't be done, I might've found a clever solution.
+
+    >I think that really is the main take away here for me. Ask the next question, and gained understanding of ```reduce()``` and clever implementations of ```Math.abs()```.
 ---
 
 ### Final Challenge Reflections
@@ -372,3 +445,7 @@ I didn't step back to recalibrate because I was frustrated with myself for not c
 Which brings me to my second reflection. My ambitions need a little more tuning. I'm all for getting things done and making awesome things! I love it so much. But maybe it would be better to work from a place that doesn't disable me if I'm not able to meet those ambitions. I'm not sure where that is at the moment but I think it has to do with more putting more enjoyment in the crafting of solutions and learning new things than it the fulfillment of either of those things. All of these things are good, but I love learning as it is so why not have more of my inner values surround learning as opposed to slightly more vague things like master or accomplishment. I love both of those things but I may end up curtailing myself (and in return both of those things) if I try to brute force my way to them. Why not approach problems with a greater sense of humility and a larger excitement around learning and experimenting rather than having focus around whether or not I can do it to a certain standard.
 
 Also I'm sure I'll be a lot lighter of a person with that adjustment, who doesn't want to be around someone who is just loving on life and learning. It's a lot more freeing of an approach.
+
+Ask the next question!
+(continue writing this when less tired, go to bed my dude.)
+---- --- -- -- --
