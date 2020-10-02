@@ -305,6 +305,60 @@
 
     >I think the only downside to using Boolean is that it checks for truthy and falsy as opposed to only boolean primitives. It could return true (so in this case filter them) for non-boolean data types. But the notes of this problem did specify that arrays would only contain Boolean values. So awesome solution and I learned a new thing woot!
 
+### Challenge #6 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Write a function redundant that takes in a string str and returns a function that returns str.
+
+    Examples:
+
+        const f1 = redundant("apple")
+        f1() ➞ "apple"
+
+        const f2 = redundant("pear")
+        f2() ➞ "pear"
+
+        const f3 = redundant("")
+        f3() ➞ ""
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my first solution: 
+
+        function redundant(str) {
+            return function echoString(){
+                return str;
+            }
+        }
+
+    I was struggling to think of a name for this function, but really I should've used an anonymous function here. So,
+
+        function redundant(str) {
+            return function(){
+                return str;
+            }
+        }
+
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >If I'm seeing multiple returns, like in this case where I'm making a higher order function, I should consider using arrow functions. Looking at other peoples solutions some of them have already done that, mainly in these forms (Both not my solutions).
+
+        const redundant = str => () => str;
+
+    >and
+
+        function redundant(str) {
+            return () => str;
+        }
+
+    >I think that the first solution here ```str => () => str``` to me is getting away from that very quick readability, so I should've just condensed the anonymous function of my own updated answer to the second answer here ```return () => str```.
+
 
 ---
 
