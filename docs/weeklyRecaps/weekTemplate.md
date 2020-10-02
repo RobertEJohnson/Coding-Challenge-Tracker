@@ -16,7 +16,8 @@
 
 === "Code Challenge"
 
-    **Challenge:** *Create a function that takes an array of numbers and return both the minimum and maximum numbers, in that order.* 
+    **Challenge:**  
+    Challenge instructions here
 
     Examples:
 
@@ -24,11 +25,13 @@
         minMax([2334454, 5]) ➞ [5, 2334454]
         minMax([1]) ➞ [1, 1]
 
-        Notes: All arrays will have at least one element and contain valid numbers.
+        Notes:
+        Notes here
 
 === "Solution"
     
-    **Solution:** Notes about solution here: 
+    **Solution:**  
+    Notes about solution here: 
 
         My first solution
 
@@ -38,12 +41,9 @@
 
 === "Learning Notes"
 
-    **Learning Notes:**
+    **Learning Notes:**  
 
-    >Checkout all these cool new things I've learned!
-
-    >I never thought to use x in y way before! That's so clever!  
-    >Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum Lorem ipsum lorem ipsum
+    >Notes here
 
 
 ### Reflections
