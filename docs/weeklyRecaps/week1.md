@@ -257,6 +257,54 @@
 
     >Maybe I should make a memory mnemonic to help remember the relationship between expressions and statements... how about... expressing, two s's (ss) because it can do both expressing and statements. Statements have no repeating letters because it cannot do both. That sorta works, I'll stick with that for now.
 
+### Challenge #5 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function which returns the number of true values there are in an array.
+
+    Examples:
+
+        countTrue([true, false, false, true, false]) ➞ 2
+        countTrue([false, false, false, false]) ➞ 0
+        countTrue([]) ➞ 0
+
+        Notes: 
+        Return 0 if given an empty array.
+        All array items are of the type bool (true or false).
+
+=== "Solution"
+    
+    **Solution:**  
+    My solution: 
+
+        function countTrue(arr) {
+	        return [...arr].filter(value => value === true).length
+        }
+    
+    After submitting the answer I realized I just spread an array, even though I'm using an array method already haha. Oops. I had just done a similar challenge with a string and my brain jumped the gun a little bit.
+
+    I should've just had
+
+        return arr.filter(value => value === true).length
+    
+    
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >I checked out a few of the other solutions people came up with and noticed some people using
+
+    >```.filter(Boolean)```
+
+    >I've seen things like constructing objects with ```Object``` and ```new``` but I've never looked into the Boolean object wrapper before. This is a cool way to tackle the problem! 
+    
+    >```Boolean()``` essentially just takes a parameter and passes out a boolean primitive for whether it is truthy or falsy. Maybe this is actually whats running behind the scenes for truthy and falsy determination in JavaScript?? 
+
+    >I think the only downside to using Boolean is that it checks for truthy and falsy as opposed to only boolean primitives. It could return true (so in this case filter them) for non-boolean data types. But the notes of this problem did specify that arrays would only contain Boolean values. So awesome solution and I learned a new thing woot!
+
 
 ---
 
