@@ -433,6 +433,63 @@
     >I think the first thing is, ask the next question. I never asked, "Is there any way I can make these two numbers I have to accumulate into one number?". I still don't think in this particular case I would've came up with the solution to use ```Math.abs()```, but I still would've had a *chance* to come up with a different solution. If I would've just asked the question to the immediate problem I was encountering rather than thinking it couldn't be done, I might've found a clever solution.
 
     >I think that really is the main take away here for me. Ask the next question, and gained understanding of ```reduce()``` and clever implementations of ```Math.abs()```.
+
+### Challenge #8 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function that determines whether a number is Oddish or Evenish. A number is Oddish if the sum of all of its digits is odd, and a number is "Evenish" if the sum of all of its digits is even. If a number is Oddish, return "Oddish". Otherwise, return "Evenish".
+
+    For example, oddishOrEvenish(121) should return "Evenish", since 1 + 2 + 1 = 4. oddishOrEvenish(41) should return "Oddish", since 4 + 1 = 5.
+
+    Examples:
+
+        oddishOrEvenish(43) ➞ "Oddish"
+        oddishOrEvenish(373) ➞ "Oddish"
+        oddishOrEvenish(4433) ➞ "Evenish"
+
+        Notes:
+        No Notes.
+
+=== "Solution"
+    
+    **Solution:**  
+    My first solution!: 
+
+        function oddishOrEvenish(num) {
+            const sum = (num).toString().split('').reduce((acc,cur)=>acc+Number(cur), 0);
+            return sum % 2 === 0 ? 'Evenish': 'Oddish';
+        }
+
+    I'm not crazy about having to convert a number into a string then back into a number once its is separated, I'm sure there has to be a way to keep it as a number the whole time :) 
+
+    Another person's solution was this
+
+        function oddishOrEvenish(num) {
+            return [...String(num)].map(Number).reduce((a,v) => a + v) % 2 ? 'Oddish' : 'Evenish'
+        }
+
+    They used the ```Number``` object wrapper that's awesome! I just saw a solution recently that used a the ```Boolean``` object wrapper (challenge #5 this week) it's cool to see another object wrapper being used in an array method. Besides that it looks like they had a pretty similar train of thought for this problem as I did, which is cool. I feel like mapping and reducing the same array is probably treading the same ground a bit too much, this is where it would be awesome to have more experience with efficency and testing functions so I could have more solid logic on if something is a good practice or not rather than just inferring :) 
+    
+    I think breaking the function into two chunks (a variable sum, then an ternary operator on sum) reads a little smoother.
+
+    There is one last thing I would change about my answer though. I know the questions tests only include integers but why not account for decimal points as well? So I'm going to fix that... and here's my updated solution so now the function can work with decimal arguments as well like ```.0112``` or ```230.39103```. It still doesn't do a ```typeof(functionArgument)==='number'``` check which it could. But for now I'll just assume the user of oddishOrEvenish isn't passing something else in. Technically it will work for strings like '24234' too which is nice.
+
+        function oddishOrEvenish(num) {
+            const sum = (num).toString().split('').reduce((acc, cur)=>
+                cur !== '.' ? acc + Number(cur) : acc + 0
+            , 0);
+            return sum % 2 === 0 ? 'Evenish' : 'Oddish';
+        }
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >That was a lot of fun! It's been a good while since I last used ```split('')``` to break a string into an array! No other major notes that I haven't talked about in the solutions. I enjoy doing the little bit of extra checking for a decimal point, I should've done that to start, that makes a much more useful function in my opinion.
+
+
 ---
 
 ### Final Challenge Reflections
