@@ -489,6 +489,57 @@
 
     >That was a lot of fun! It's been a good while since I last used ```split('')``` to break a string into an array! No other major notes that I haven't talked about in the solutions. I enjoy doing the little bit of extra checking for a decimal point, I should've done that to start, that makes a much more useful function in my opinion.
 
+### Challenge #9 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Write a function that converts an object into an array of keys and values.
+
+    Examples:
+
+        objectToArray({
+            D: 1,
+            B: 2,
+            C: 3
+        }) ➞ [["D", 1], ["B", 2], ["C", 3]]
+
+        objectToArray({
+            likes: 2,
+            dislikes: 3,
+            followers: 10
+        }) ➞ [["likes", 2], ["dislikes", 3], ["followers", 10]]
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my first solution: 
+
+        function objectToArray(obj) {
+            let arrayOfObjects = []
+            for(const property in obj){
+                arrayOfObjects.push([property, obj[property]]);
+            }
+            return arrayOfObjects;
+        }
+
+    After submitting that answer I though about my variable naming, ```arrayOfObjects``` though a little lengthy isn't a great name because I'm not really holding objects anymore. So I should've named it something like, ```keyValueArray```.
+
+    After looking at some other people's solutions I noticed that some were using the ```.entries()``` and ```.keys``` methods for ```Object```. It's been awhile since I used the ```.entries()``` method, but that would work a bit better here so I'm going to adapt my answer for that,
+
+        function objectToArray(obj) {
+            return Object.entries(obj);
+        }
+
+    This certainly is a lot shorter for the same effect, I like it a lot, it's also pretty readable. 
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >I'm glad to get some more practice with ```.entries()```. There's a better chance I'll remember this method in the future if I can keep using it from time to time.
+
+    >I tried looking up the difference of using a ```for in``` loop versus ```.entries()``` and I got this from MDN: The only important difference is that a for...in loop enumerates properties in the prototype chain as well. I tried reading up on the prototype chain, but it was a little too dense for me here while I'm on vacation with my family haha, I'll have to come back to that later. :)
 
 ---
 
@@ -499,10 +550,10 @@ Lots of things here!
 Assuming this Challenge #3 be easier than it was originally for me kept me from identifying/checking in with myself when I was struggling.
 I didn't step back to recalibrate because I was frustrated with myself for not coming up with a solution, then I didn't come up with a solution I really liked much. I usually don't struggle with the frustration of not figuring things out, but I can identify a few core problem causers here. Firstly, my own self-expectation of doing something I thought would be easy kept from adapting and held me back when it proved to be difficult. The standard I hold myself to ended up defeating me, I'm an 'accomplisher' then fell because I didn't meet my own terms of 'accomplishing' tasks. 
 
-Which brings me to my second reflection. My ambitions need a little more tuning. I'm all for getting things done and making awesome things! I love it so much. But maybe it would be better to work from a place that doesn't disable me if I'm not able to meet those ambitions. I'm not sure where that is at the moment but I think it has to do with more putting more enjoyment in the crafting of solutions and learning new things than it the fulfillment of either of those things. All of these things are good, but I love learning as it is so why not have more of my inner values surround learning as opposed to slightly more vague things like master or accomplishment. I love both of those things but I may end up curtailing myself (and in return both of those things) if I try to brute force my way to them. Why not approach problems with a greater sense of humility and a larger excitement around learning and experimenting rather than having focus around whether or not I can do it to a certain standard.
+Which brings me to my second reflection. My ambitions need a little more tuning. I'm all for getting things done and making awesome things! I don't want my worth to be nested in getting things done though, that's unstable and can bring a team down if it's not met. I'd rather have the focus on learning and be more giving with myself.
 
-Also I'm sure I'll be a lot lighter of a person with that adjustment, who doesn't want to be around someone who is just loving on life and learning. It's a lot more freeing of an approach.
+Next, Ask the next question!
 
-Ask the next question!
-(continue writing this when less tired, go to bed my dude.)
+We have to have so many learning moments we never take advantage of, I think it's a good practice to continually be asking new questions. A dead-end might in fact the threshold guardian before a whole new company/product/solution. Those are the places that I should be excited to get into. Rather than leaving right away, why not experiment a bit and ask questions. Some really good things could be right around the corner!
+
 ---- --- -- -- --
