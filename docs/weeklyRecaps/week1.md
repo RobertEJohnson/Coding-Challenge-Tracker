@@ -541,19 +541,75 @@
 
     >I tried looking up the difference of using a ```for in``` loop versus ```.entries()``` and I got this from MDN: The only important difference is that a for...in loop enumerates properties in the prototype chain as well. I tried reading up on the prototype chain, but it was a little too dense for me here while I'm on vacation with my family haha, I'll have to come back to that later. :)
 
+### Challenge #10 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Write the function that takes three dimensions of a brick: height(a), width(b) and depth(c) and returns true if this brick can fit into a hole with the width(w) and height(h).
+
+    Examples:
+
+        doesBrickFit(1, 1, 1, 1, 1) ➞ true
+        doesBrickFit(1, 2, 1, 1, 1) ➞ true
+        doesBrickFit(1, 2, 2, 1, 1) ➞ false
+
+        Notes:
+        You can turn the brick with any side towards the hole.
+        We assume that the brick fits if its sizes equal the ones of the hole (i.e. brick size should be less than or equal to the size of the hole, not strictly less).
+        You can't put a brick in at a non-orthogonal angle.
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my first solution: 
+
+        // (a,b,c) -- dimensions of the brick
+        // (w,h) -- dimensions of the hole
+        function doesBrickFit(a,b,c, w,h) {
+            return a * b <= w * h || b * c <= w * h || a * c <= w * h ? true : false;
+        }
+
+    This solution was just working with the default parameters listed in the comments that they listed, but it would be clearer with more descriptive names like ```doesBrickFit(height, width, depth, holeWidth, holeHeight)```. 
+
+    It works with the chain for the ``or`` chain for the ternary expression, but its pretty unclear what is going on at first. I came up with another solution which reads better but might be less efficient.
+
+        function doesBrickFit(height,width,depth, holeWidth,holeHeight) {
+            return Math.min(height * width, width * depth, height * depth) <= holeWidth * holeHeight ? true: false;
+        }
+
+    After submitting my solution (and forgetting to remove the comments for the old parameters haha) I looked over other people's solutions. A ton of different approaches for this problem. I think I prefer mine to most of them for this problem though, but I did learn about the existence of an array method called ```.some()``` which basically tests every value of an array against a callback function and returns true if *some* (in this case any) of the values pass the test, else it returns false. Pretty cool. 
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >Once I get back from vacation mid next week I think it'd be a good idea for me to invest some time into learning how to test functions for efficiency. This way I can do less inferring of whether or not something will be more or less efficient and be able to make a better judgement calls on whether or not the added readability is worth the trade off. 
+
+    >The ```.some()``` method, which tests every value of the array against a callback function, returning true the moment one passes the test, else returning false.
 ---
 
-### Final Challenge Reflections
+## Final Challenge Reflections
 
 Lots of things here!
 
+- **Change the focus from accomplishing to learning**.
+
 Assuming this Challenge #3 be easier than it was originally for me kept me from identifying/checking in with myself when I was struggling.
-I didn't step back to recalibrate because I was frustrated with myself for not coming up with a solution, then I didn't come up with a solution I really liked much. I usually don't struggle with the frustration of not figuring things out, but I can identify a few core problem causers here. Firstly, my own self-expectation of doing something I thought would be easy kept from adapting and held me back when it proved to be difficult. The standard I hold myself to ended up defeating me, I'm an 'accomplisher' then fell because I didn't meet my own terms of 'accomplishing' tasks. 
+I didn't step back to recalibrate because I was frustrated with myself for not coming up with a solution, then I didn't come up with a solution I really liked much. I usually don't struggle with the frustration of not figuring things out, but I can identify a few core problem causers here. Firstly, my own self-expectation of doing something I thought would be easy kept from adapting and held me back when it proved to be difficult. The standard I hold myself to ended up defeating me, I'm often an 'accomplisher' but when I didn't meet my own terms of accomplishing tasks I ended up balance and clarity. 
 
-Which brings me to my second reflection. My ambitions need a little more tuning. I'm all for getting things done and making awesome things! I don't want my worth to be nested in getting things done though, that's unstable and can bring a team down if it's not met. I'd rather have the focus on learning and be more giving with myself.
+Which brings me to my second reflection. My ambitions need a little more tuning. I'm all for getting things done and making awesome things! I don't want my worth to be nested in getting things done though, that's unstable and can bring a team down if it's not met. I'd rather have the focus and worth come from learning rather than accomplishment, after all learning is a far better accomplishment than doing but not learning.
 
-Next, Ask the next question!
+- **Ask the next question**!
 
 We have to have so many learning moments we never take advantage of, I think it's a good practice to continually be asking new questions. A dead-end might in fact the threshold guardian before a whole new company/product/solution. Those are the places that I should be excited to get into. Rather than leaving right away, why not experiment a bit and ask questions. Some really good things could be right around the corner!
 
+- **Invest time into learning efficiency testing**.
+
+Once I get back from vacation this would be a great use of time, though likely it will wait until after a few interviews I have coming up.By learning efficiency testing I can do less inferring of whether or not something will be more or less efficient and be able to make a better judgement calls on whether or not added readability but possible change of efficiency is worth the trade off. 
+
 ---- --- -- -- --
+
+## Done with this week? 
+
+If the week has ended, why not check out the next week under the weekly recaps? :)
