@@ -1,5 +1,7 @@
 # Sept 28th - Oct 4th Recap
 
+These are all of the challenges, solutions, notes, and reflections from Monday September 28th to Sunday October 4th.
+
 ## Code Challenges
 
   Edabit Challenges 
@@ -589,7 +591,7 @@
     >The ```.some()``` method, which tests every value of the array against a callback function, returning true the moment one passes the test, else returning false.
 ---
 
-## Final Challenge Reflections
+## Final Reflections
 
 Lots of things here!
 
