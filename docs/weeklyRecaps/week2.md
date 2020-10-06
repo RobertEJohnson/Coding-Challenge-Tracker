@@ -109,10 +109,86 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
 
     >```.hasOwnProperty()```, that's a really neat method! Being able to check if a property is inherited or not I'm sure will come in useful or one day. I might not remember the method specifically by the time I need it, though writing about it certainly helps, but it is quite helpful to know there are at least built-in ways to check for things like inheritance. Just knowing that I'm enabled to look for solutions better when I'm running into fun challenges.
 
+### Challenge #2 {: .challenge .challenge--???}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    A boomerang is a V-shaped sequence that is either upright or upside down. Specifically, a boomerang can be defined as: sub-array of length 3, with the first and last digits being the same and the middle digit being different.
+
+    Some boomerang examples:
+
+        [3, 7, 3], [1, -1, 1], [5, 6, 5]
+
+    Create a function that returns the total number of boomerangs in an array.
+
+    To illustrate:
+
+        [3, 7, 3, 2, 1, 5, 1, 2, 2, -2, 2]
+        // 3 boomerangs in this sequence:  [3, 7, 3], [1, 5, 1], [2, -2, 2]
+
+    Be aware that boomerangs can overlap, like so:
+
+        [1, 7, 1, 7, 1, 7, 1]
+        // 5 boomerangs (from left to right): [1, 7, 1], [7, 1, 7], [1, 7, 1], [7, 1, 7], and [1, 7, 1]
+
+    Examples
+
+        countBoomerangs([9, 5, 9, 5, 1, 1, 1]) ➞ 2
+        countBoomerangs([5, 6, 6, 7, 6, 3, 9]) ➞ 1
+        countBoomerangs([4, 4, 4, 9, 9, 9, 9]) ➞ 0
+
+        Notes:  
+        [5, 5, 5] (triple identical digits) is NOT considered a boomerang,
+        because the middle digit is identical to the first and last.
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my solution: 
+
+        function countBoomerangs(arr) {
+            let boomerangs = 0;
+            for(let i = 0; i<arr.length; i++){
+                if(arr[i] === arr[i+2] && arr[i+1] !== arr[i]){
+                    boomerangs+=1;
+                }
+            }
+            return boomerangs;
+        }
+
+    Overall I'm pretty happy with this solution, it could benefit from some comments explaining what a boomerang is but for this challenge it's not necessary. I took a look at other people's solutions and saw a lot of similar things, though the one below stood out to me.
+
+    (**Below is someone elses solution**)
+
+        function countBoomerangs(arr) {
+	        return arr.reduce((acc , e , index) => acc + (e === arr[index+2] && e!= arr[index+1]) , 0);
+        }
+
+    I never thought to use reduce even though I've been using it recently, so I think I need to get a better working definition of when I should be using reduce, I'll go over some of my thoughts in the learning notes.
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >So I'm not thinking to use ```.reduce()``` even though I know it and have been using it, I think this could be helped with a little more clarification on my part. When should I use ```.reduce()```?
+
+    >1. I need to loop through an array.
+    >2. I need to combine/add the values together.
+    >3. I need to do more than what I can accomplish with either a forEach, map, or filter method. Often I can use a ```.reduce()``` method rather than doing combinations of other methods.
+
+    >It's not a perfect working guideline, but hey it's better than nothing and will at least start me thinking of when I should be using it. I took a look at this post, <a href="https://www.freecodecamp.org/news/reduce-f47a7da511a9/">A Guide to the Reduce Method</a>, and I saw something really really cool. Using ```.reduce()``` to be a pipeline for function calls! So essentially you can pass in an array of functions in the order you need them called then pass in an initial value as the parameter you'd like run through the chain and wallah! You have an easily modifiable function pipeline. So cool! 
+
+    >So it seems ```.reduce()``` has been used in a ton of really clever solutions, the more I learn about it the more it seems like it will be a really really useful tool to understand at a deep instinctive level. It's pretty adaptive and seems to me to be quite efficient.
 ---
 
 ## Final Reflections
 
+My first reflection comes from challenge #2 from this week.
+
+- Rewrite why a function (or feature) of a language is useful or when to use it in your own words.
+  
+If you can't describe when you'd use a something over another feature, or speak to what it does really well, there's a good chance it probably won't be used. I had not in my own words described where using ```.reduce()``` is helpful and even though I knew about it **and had used it recently**, it didn't come to mind when it would've been helpful. As such I think there is a real worth in not only learning awesome features, methods, functions, but also spending time reflecting and focusing in on why they're useful. It's sorta like training yourself for a crisis-situation. The deeply rooted things are probably the only things that will stay when a scenario arises that could use them.
 
 ---- --- -- -- --
 
