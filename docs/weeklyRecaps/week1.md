@@ -614,4 +614,4 @@ Once I get back from vacation this would be a great use of time, though likely i
 
 ## Done with this week? 
 
-If the week has ended, why not check out the next week under the weekly recaps? :)
+If the week has ended, why not check out another week in the weekly recaps list? :)

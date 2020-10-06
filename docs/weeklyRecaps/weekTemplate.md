@@ -56,4 +56,4 @@ These are all of the challenges, solutions, notes, and reflections from (Month D
 
 ## Done with this week? 
 
-If the week has ended, why not check out the next week under the weekly recaps? :)
+If the week has ended, why not check another week in the weekly recaps list? :)

@@ -186,7 +186,7 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
 
 My first reflection comes from challenge #2 from this week.
 
-- Rewrite why a function (or feature) of a language is useful or when to use it in your own words.
+- Rewrite why a function or feature of a language is useful (and when to use it over others) in your own words.
   
 If you can't describe when you'd use a something over another feature, or speak to what it does really well, there's a good chance it probably won't be used. I had not in my own words described where using ```.reduce()``` is helpful and even though I knew about it **and had used it recently**, it didn't come to mind when it would've been helpful. As such I think there is a real worth in not only learning awesome features, methods, functions, but also spending time reflecting and focusing in on why they're useful. It's sorta like training yourself for a crisis-situation. The deeply rooted things are probably the only things that will stay when a scenario arises that could use them.
 
@@ -194,4 +194,4 @@ If you can't describe when you'd use a something over another feature, or speak 
 
 ## Done with this week? 
 
-If the week has ended, why not check out the next week under the weekly recaps? :)
+If the week has ended, why not check out another week in the weekly recaps list? :)
