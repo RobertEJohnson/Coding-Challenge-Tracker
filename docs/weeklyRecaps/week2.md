@@ -109,7 +109,7 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
 
     >```.hasOwnProperty()```, that's a really neat method! Being able to check if a property is inherited or not I'm sure will come in useful or one day. I might not remember the method specifically by the time I need it, though writing about it certainly helps, but it is quite helpful to know there are at least built-in ways to check for things like inheritance. Just knowing that I'm enabled to look for solutions better when I'm running into fun challenges.
 
-### Challenge #2 {: .challenge .challenge--???}
+### Challenge #2 {: .challenge .challenge--edabit}
 
 === "Code Challenge"
 
@@ -180,6 +180,81 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
     >It's not a perfect working guideline, but hey it's better than nothing and will at least start me thinking of when I should be using it. I took a look at this post, <a href="https://www.freecodecamp.org/news/reduce-f47a7da511a9/">A Guide to the Reduce Method</a>, and I saw something really really cool. Using ```.reduce()``` to be a pipeline for function calls! So essentially you can pass in an array of functions in the order you need them called then pass in an initial value as the parameter you'd like run through the chain and wallah! You have an easily modifiable function pipeline. So cool! 
 
     >So it seems ```.reduce()``` has been used in a ton of really clever solutions, the more I learn about it the more it seems like it will be a really really useful tool to understand at a deep instinctive level. It's pretty adaptive and seems to me to be quite efficient.
+
+### Challenge #3 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function that takes an array of numbers and returns only the even values.
+
+    Examples
+
+        noOdds([1, 2, 3, 4, 5, 6, 7, 8]) ➞ [2, 4, 6, 8]
+        noOdds([43, 65, 23, 89, 53, 9, 6]) ➞ [6]
+        noOdds([718, 991, 449, 644, 380, 440]) ➞ [718, 644, 380, 440]
+
+        Notes:
+        Return all even numbers in the order they were given.
+        All test cases contain valid numbers ranging from 1 to 3000.    
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my solution: 
+
+        function noOdds(arr) {
+            return arr.filter( value => value % 2 === 0);
+        }
+
+    Overall I'm really happy with this solution, mostly because I'm getting the direct benefits of having reflected on the ```.reduce()``` method from the challenge before and thought through when I should be using ```.filter()``` and ```.map()``` as a result. It was really clear to me that this was a perfect opportunity for ```.filter()``` since I took a little bit of extra time to reflect on it.
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >No major notes here besides that short blip in the solution tab, I'm happy how clear it was to me about the method I should choose to tackle this challenge :) That was really neat.
+
+### Challenge #4 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function that takes a string and returns the word count. The string will be a sentence.
+
+    Examples:
+
+        countWords("Just an example here move along") ➞ 6
+        countWords("This is a test") ➞ 4
+        countWords("What an easy task, right") ➞ 5
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my solution: 
+
+        function countWords(str) {
+            return str.split(" ").length;
+        }
+
+    Part of me feels like there has to be a gotcha lying in wait here somewhere, but I think the main repeatable pattern for words in a sentence is the space between. Hyphenated words will not count in this solution, but from my exploring on the topic hyphenated words seem to count as one word.
+
+    I think maybe my brain was mad at me using ```.split()``` with disregard to the punctuation, but it shouldn't matter if the actual array that ```.split()``` is returning has words like 'pause...' inside of it. All I'm concerned with here is the ```.length``` of that returned array.
+
+    Ah! If there are anything like abbreviations or acronyms in this sentence that I am splitting, they will be counted as words. That's what I was feeling weird about. But upon looking further into it, it looks like all of these are counted as one word from a linguistic standpoint. I think this answer covers more bases than I originally thought.
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >I had a few moments of hesitation putting this challenge on the weekly challenge documentation.
+
+    >I understand my want to show people who may be viewing this that I can do more complex problems, but I have to ask myself what am I trying to prove.
+
+    >It's poor practice to tell the story before it's even begun. Even if I think of a solution quickly there is still a lot to learn in others' solutions and through reflection.
+    
+    >If it becomes a problem in the future then it can be dealt with, but I shouldn't curtail my process until I'm sure, I'd rather not lose the potential knowledge haha. 
+
 ---
 
 ## Final Reflections
@@ -189,6 +264,10 @@ My first reflection comes from challenge #2 from this week.
 - Rewrite why a function or feature of a language is useful (and when to use it over others) in your own words.
   
 If you can't describe when you'd use a something over another feature, or speak to what it does really well, there's a good chance it probably won't be used. I had not in my own words described where using ```.reduce()``` is helpful and even though I knew about it **and had used it recently**, it didn't come to mind when it would've been helpful. As such I think there is a real worth in not only learning awesome features, methods, functions, but also spending time reflecting and focusing in on why they're useful. It's sorta like training yourself for a crisis-situation. The deeply rooted things are probably the only things that will stay when a scenario arises that could use them.
+
+- Document the easy challenges and don't curtail the learning process.
+
+I've felt some hesitation documenting the easier challenges, but I've decided to continue to do so. A lot of really good reflections occur while I'm writing up documentation and if I write off a challenge as easy I'm falling to a several different poor rationals. If my documentation at some point needs more fine tuning I think I will address it then, for now I want all the learning benefits I can get from documenting. 
 
 ---- --- -- -- --
 
