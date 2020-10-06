@@ -18,3 +18,4 @@ nav:
     - Home: index.md
     - Weekly Recaps:
         - 1. Sept 28th - Oct 4th : 'weeklyRecaps/week1.md'
+        - 2. Oct 5th - Oct 11th : 'weeklyRecaps/week2.md'
