@@ -177,7 +177,7 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
     >2. I need to combine/add the values together.
     >3. I need to do more than what I can accomplish with either a forEach, map, or filter method. Often I can use a ```.reduce()``` method rather than doing combinations of other methods.
 
-    >It's not a perfect working guideline, but hey it's better than nothing and will at least start me thinking of when I should be using it. I took a look at this post, <a href="https://www.freecodecamp.org/news/reduce-f47a7da511a9/">A Guide to the Reduce Method</a>, and I saw something really really cool. Using ```.reduce()``` to be a pipeline for function calls! So essentially you can pass in an array of functions in the order you need them called then pass in an initial value as the parameter you'd like run through the chain and wallah! You have an easily modifiable function pipeline. So cool! 
+    >It's not a perfect working guideline, but hey it's better than nothing and will at least start me thinking of when I should be using it. I took a look at this post, <a href="https://www.freecodecamp.org/news/reduce-f47a7da511a9/" target="_blank">A Guide to the Reduce Method</a>, and I saw something really really cool. Using ```.reduce()``` to be a pipeline for function calls! So essentially you can pass in an array of functions in the order you need them called then pass in an initial value as the parameter you'd like run through the chain and wallah! You have an easily modifiable function pipeline. So cool! 
 
     >So it seems ```.reduce()``` has been used in a ton of really clever solutions, the more I learn about it the more it seems like it will be a really really useful tool to understand at a deep instinctive level. It's pretty adaptive and seems to me to be quite efficient.
 
@@ -255,19 +255,129 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
     
     >If it becomes a problem in the future then it can be dealt with, but I shouldn't curtail my process until I'm sure, I'd rather not lose the potential knowledge haha. 
 
+### Challenge #5 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function that takes an array of numbers and return "Boom!" if the number 7 appears in the array. Otherwise, return "there is no 7 in the array".
+
+    Examples:
+
+        sevenBoom([1, 2, 3, 4, 5, 6, 7]) ➞ "Boom!"
+        sevenBoom([8, 6, 33, 100]) ➞ "there is no 7 in the array"
+        sevenBoom([2, 55, 60, 97, 86]) ➞ "Boom!"
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my solution:
+
+        function sevenBoom(arr) {
+            let result = 'there is no 7 in the array';
+            arr.forEach(value=>{
+                if(RegExp(/[7]/).test(String(value))){ 
+                    result = 'Boom!';
+                }
+            })
+            return result;
+        }
+
+    I stumbled upon regular expressions looking for more precise searching methods in JavaScript, no idea they existed, and they seem amazing for identifying patterns. The syntax is a little heavy on the eyes for beginners though. (at least for more complicated searches)
+
+    I submitted the above answer, after looking at some other's solutions I see that another person used regular expressions and in a much better way. 
+
+    (**Not my solution**)
+    
+        const sevenBoom = arr =>
+            /7/.test(arr) ? 'Boom!' : 'there is no 7 in the array';
+
+    I didn't understand that regular expressions already had some functionality built into them for dealing with nested information, I thought they could only be used on a single value so I would have to loop through them. I just played around with them though and it seems they can manage some pretty serious nesting, many multitudes of arrays deep.
+
+    Oops.
+
+    Also I didn't need to say ```/[7]/``` but rather just ```/7/``` as the brackets mean a character set (match any of the ones included);
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >Regular expressions! What a cool way to manage some intense pattern searching. I could see this being really helpful for future scenarios with getting particular bits out of complex data structures.
+
+    >I'm excited to have learned about these, I got a lot more to learn about them too which is cool, but for now knowing they exist could get me out of a pinch.
+
+### Challenge #6 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    A pandigital number contains all digits (0-9) at least once. Write a function that takes an integer, returning true if the integer is pandigital, and false otherwise.
+
+    Examples:
+
+        isPandigital(98140723568910) ➞ true
+        isPandigital(90864523148909) ➞ false // 7 is missing.
+        isPandigital(112233445566778899) ➞ false
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my first solution, this one I came up with with my friend <a href="https://github.com/CarlWilcoxon" target="_blank">Carl Wilcoxon</a>: 
+
+        function isPandigital(num) {
+            return RegExp(/(?=.*[0])(?=.*[1])(?=.*[2])(?=.*[3])(?=.*[4])(?=.*[5])(?=.*[6])(?=.*[7])(?=.*[8])(?=.*[9])/).test(String(num));
+        }
+
+    We were experimenting with regular expressions which we both we're very familiar with. I actually like this solution, though I'm sure there is a far more concise way to search for the numbers 0-9 with a regular expression. We searched for a fair bit for a solution but we settled with this solution for now.
+
+    We should've removed the ```[]``` grouping from the entire expression, but we forgot too from when we adapted it from other failed attempts. 
+    
+    After looking into it a bit more on my own we should've added a lazy quantifier to make sure it matches as few results as possible, and we also didn't need to use the RegExp() constructor. I also swapped the ```String()``` constructor out for a ```.toString()``` method which I thought (mistakenly, see learning notes) would be more efficient.
+
+        function isPandigital(num) {
+	        return /(?=.*?0)(?=.*?1)(?=.*?2)(?=.*?3)(?=.*?4)(?=.*?5)(?=.*?6)(?=.*?7)(?=.*?8)(?=.*?9)/.test(num.toString());
+        }
+
+    As for regular expressions I still didn't figure out how to iterate a number variable or not include it if it was found before in a grouping. But I'm pretty hopeful I'll get pretty good at regular expressions in the future though if I can keep practicing with them.
+
+    This is getting quite lengthy but the better solution would have been for me to use the ```Set()``` constructor and ```.size``` which were two things I didn't know about.
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >I experimented a lot with regular expressions, I spent quite a good chunk of time with them and I'm happy I did. Even though a better solution was with ```Set()``` and the ```.size``` property I think that learning about regular expressions was well worth the effort.
+
+    >These were the most helpful tools for me, <a href="https://eloquentjavascript.net/09_regexp.html#p_SXQOi9ZwwH" target="_blank">a chapter from Eloquent Javascript</a>, and <a href="https://regexr.com/" target="_blank">a regular expression code sandbox</a>.
+
+
 ---
 
 ## Final Reflections
 
-My first reflection comes from challenge #2 from this week.
-
 - Rewrite why a function or feature of a language is useful (and when to use it over others) in your own words.
   
-If you can't describe when you'd use a something over another feature, or speak to what it does really well, there's a good chance it probably won't be used. I had not in my own words described where using ```.reduce()``` is helpful and even though I knew about it and had used it recently, **it didn't come to mind when it would've been helpful**. As such I think there is a real worth in not only learning awesome features, methods, functions, but also spending time reflecting and focusing in on why they're useful. It's sorta like training yourself for a crisis-situation. The deeply rooted things are probably the only things that will stay when a scenario arises that could use them.
+If you can't describe when you'd use a something over another feature, or speak to what it does really well, there's a good chance it probably won't be used. I had not in my own words described where using ```.reduce()``` is helpful and even though I knew about it and had used it recently, **it didn't come to mind when it would've been helpful**. 
+
+As such I think there is a real worth in not only learning awesome features, methods, functions, but also spending time reflecting and focusing in on why they're useful. It's sorta like training yourself for a crisis-situation. The deeply rooted things are probably the only things that will surface when a scenario arises that could use them. In order to have them accessible they need to be reflected upon.
 
 - Document the easy challenges and don't curtail the learning process.
 
-I've felt some hesitation documenting the easier challenges, but I've decided to continue to do so. A lot of really good reflections occur while I'm writing up documentation and if I write off a challenge as easy I'm falling to a several different poor rationals. If my documentation at some point needs more fine tuning I think I will address it then, for now I want all the learning benefits I can get from documenting. 
+I've felt some hesitation documenting the easier challenges, but I've decided to continue to do so. A lot of really good reflections occur while I'm writing up documentation and if I write off a challenge as easy I'm falling to a several different poor rationales. If my documentation at some point needs more fine tuning I think I will address it then, for now I want all the learning benefits I can get from documenting. 
+
+- Regular Expressions
+
+These seem so incredibly useful, but also quite clunky syntactically. Overall I'm really happy I dove into them, and am excited to use them again. The most helpful tools I've found were <a href="https://eloquentjavascript.net/09_regexp.html#p_SXQOi9ZwwH" target="_blank">a chapter from Eloquent Javascript</a>, <a href="https://regexr.com/" target="_blank">a regular expression code sandbox</a>, and <a href="https://www.regular-expressions.info/" target="_blank">regular-expressions.info</a>. I'm excited to learn how and when to use this powerful parsing tool better!
+
+- Code Challenges with a friend
+
+I did a challenge with a friend this week, <a href="https://github.com/CarlWilcoxon" target="_blank">Carl Wilcoxon</a>, and it was great! Not only did we have fun diving into regular expressions together but we also dove into prototypes and constructors a bit too! I love doing challenges on these coding challenge sites, but I realized that even though I'm getting access to other people's solutions once I submit my own, I'm not getting access to their process. That was really fun to bounce things off of each other, search together, and I even got another site to dive into for future cultivation <a href="https://www.hackerrank.com/" target="_blank">hackerrank.com</a> out of the it. 
+
+While the current sites I'm using provide great practice with methods and language gimmicks it seems that HackerRank also provides opportunities to learn in a more development-like environment with more moving pieces. I like it and will definitely dive into it in the future. I could see it becoming a staple in the cultivation process.
+
+- Object Constructors
+
+I got a great dive into some of the behind the scenes conversion/construction process of primitive types into others or objects this week. I knew my primitive types and I knew about methods you could call for different datatypes but a missing piece for me was that these primitive types are being converted to the objects with the methods when you call it on them. ```'hello``` is just a string primitive, but doing ```'hello'.length``` is the same as doing ```new String('hello').length```. It's a small thing but I never connected that thing, now I can make more informed decisions about minute efficiency too. For example, ```(333).toString()``` which is ```new Number(333).toString```, I doubt is more efficient than ```String(333)``` which only does a type conversion without constructing an object and then calling a method connected to that object. So many fun things happening under the hood, it's pretty cool to learn about.
 
 ---- --- -- -- --
 
