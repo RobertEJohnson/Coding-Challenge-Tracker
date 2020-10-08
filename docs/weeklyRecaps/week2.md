@@ -350,7 +350,150 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
 
     >These were the most helpful tools for me, <a href="https://eloquentjavascript.net/09_regexp.html#p_SXQOi9ZwwH" target="_blank">a chapter from Eloquent Javascript</a>, and <a href="https://regexr.com/" target="_blank">a regular expression code sandbox</a>.
 
+### Challenge #7 {: .challenge .challenge--edabit}
 
+=== "Code Challenge"
+
+    **Challenge:**  
+    Traditional safes use a three-wheel locking mechanism, with the safe combination entered using a dial on the door of the safe. The dial is marked with clockwise increments between 0 and 99. The three-number combination is entered by first dialling to the right (clockwise), then to the left (anti-clockwise), and then to the right (clockwise) again. Combination numbers are read from the top of the dial:
+
+    Given the starting (top) position of the dial and the increments used for each turn of the dial, return an array containing the combination of the safe.
+
+    Step-By-Step Example:
+
+        safecracker(0, [3, 10, 5]) ➞ [97, 7, 2]
+
+        Starting dial position of 0.
+
+        First turn (rightward) of 3 increments:
+        0 -> 99, 98, 97
+        First number of combination = 97
+
+        Second turn (leftward) of 10 increments:
+        97 -> 98, 99, 0, 1, 2, 3, 4, 5, 6, 7
+        Second number of combination = 7
+
+        Third turn (rightward) of 5 increments:
+        7 -> 6, 5, 4, 3, 2
+        Third number of combination = 2
+
+        The final combination is [97, 7, 2]
+
+    Other Examples:
+
+        safecracker(96, [54, 48, 77]) ➞ [42, 90, 13]
+        safecracker(43, [51, 38, 46]) ➞ [92, 30, 84]
+        safecracker(4, [69, 88, 55]) ➞ [35, 23, 68]
+
+        Notes:
+        Each of the three combination numbers will be different.
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my solution: 
+
+        function safecracker(start, increments) {
+            let currentValue = start;
+            let combination = [];
+            for(let i = 0; i<increments.length; i++){
+                if(i % 2 === 0){
+                    currentValue - increments[i] < 0 ? 
+                        currentValue = (currentValue - increments[i]) + 100 
+                        : currentValue -= increments[i];
+                    combination.push(currentValue);
+                } 
+                else{
+                    currentValue + increments[i] > 99 ? 
+                        currentValue += increments[i] - 100 
+                        : currentValue += increments[i];
+                    combination.push(currentValue);
+                }
+            }
+            return combination;
+        }
+
+    I built this solution in a way that if you were to pass in an array of more than 3 digits (turns) it could still solve it, as long as they start clockwise. 
+    
+    If I wanted to solve this problem for his lock alone I could always hard-code it.
+
+        function safecracker(start, increments){
+            let combination = [];
+            combination.push(start - increments[0] > 0 ? 
+                start - increments[0]
+                : (start - increments[0]) + 100);
+            combination.push(combination[0] + increments[1] < 99 ?
+                 combination[0] + increments[1]
+                 : combination[0] + increments[1] - 100);
+            combination.push(combination[1] - increments[2] > 0 ? 
+                combination[1] - increments[2]
+                : (combination[1] - increments[2]) + 100);
+            return combination;
+        }
+
+    Though this works, I really don't like it quite as much as my first solution because it's fully hard-coded.
+
+    After looking at some other people's solutions, this one (see below) was my favorite because of the built in function to check if a number is higher or lower than 99 or 0 and adapt it. 
+
+    (**Not My Solution**)
+
+        function safecracker(start, increments) {
+            let code = [];
+            const within99 = (num) => num > 99 ? num -= 100 : num < 0 ? num += 100 : num
+            code.push(within99(start - increments[0]));
+            code.push(within99(code[0] + increments[1]));
+            code.push(within99(code[1] - increments[2]));	
+            return code
+        }
+    
+    That ```within99``` function is a really clever solution to repeated logic for checking if a number is higher or lower than the min and max values. I'm going to adapt that function into my original solution.
+
+    (**My Updated Solution with within99 Function**)
+
+        function safecracker(start, increments) {
+            let currentValue = start;
+            let combination = [];
+            const within99 = numberInput => {
+                if(numberInput > 99){
+                    currentValue -= 100;
+                }
+                else if(numberInput < 0){
+                    currentValue += 100;
+                }
+                return currentValue;
+            }
+            for(let i = 0; i<increments.length; i++){
+                i % 2 === 0 ? 
+                    combination.push(within99(currentValue -= increments[i])) 
+                    : combination.push(within99(currentValue += increments[i]));
+            }
+            return combination;
+        }
+    
+    It was fun implementing that ```within99``` function, it works pretty nice, though I did take out the ternary chain for an if/else if statement. Though this function is a little long, I think its pretty neat that it will work for any length combination as long as the turn pattern consistently alternates from clockwise to counter-clockwise. I'm not going to add comments here in the function but I think with one or two comments explaining key things like the ```within99``` function and the for loop logic it could gain a bit more legibility.
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >Wow, I did not expect this problem to be as challenging as it was.
+
+    >What really helped me was to just grab a pen and notebook and start jotting down notes for the different pieces of this problem. Otherwise it got really hard to hold all the pieces together, especially when you had to start checking if a number is below 0 and loop it back to 99 or vice-versa.
+
+    >So one takeaway for me is to not be afraid to resort to pen and paper, use the tools at my disposal.
+
+    >Another takeaway is that ```+=``` and ```-+``` are still only short hands for ```x = x + y``` or ```x = x - y```, they can get messy with more operators since they have a built in order of operation.
+    
+    >For example:  
+    >```currentValue -= increments[i] + 100``` 
+    >will evaluate as 
+    >```currentValue = currentValue - (increments[i] + 100)``` 
+
+    >But maybe what I meant was to do this  
+    >```currentValue = (currentValue - increments[i]) + 100```  
+    >If ```-=``` is used, this cannot happen since it basically says this ```x = x - (other expressions)```
+
+    >The main takeaway is shorthand features like ```+=``` and ```-+``` will do all other calculations first before ```+ or -```'ing to the original value.
 ---
 
 ## Final Reflections
@@ -378,6 +521,16 @@ While the current sites I'm using provide great practice with methods and langua
 - Object Constructors
 
 I got a great dive into some of the behind the scenes conversion/construction process of primitive types into others or objects this week. I knew my primitive types and I knew about methods you could call for different datatypes but a missing piece for me was that these primitive types are being converted to the objects with the methods when you call it on them. ```'hello``` is just a string primitive, but doing ```'hello'.length``` is the same as doing ```new String('hello').length```. It's a small thing but I never connected that thing, now I can make more informed decisions about minute efficiency too. For example, ```(333).toString()``` which is ```new Number(333).toString```, I doubt is more efficient than ```String(333)``` which only does a type conversion without constructing an object and then calling a method connected to that object. So many fun things happening under the hood, it's pretty cool to learn about.
+
+- ```+=``` and ```-+``` 
+
+The order of operations with ```+=``` and ```-+``` will do all other calculations first before ```+ or -```'ing to the original value.
+
+By using ```-=``` we are saying ```x = x - (other expressions)```
+
+- Don't be afraid to use Pen and Paper.
+
+It's just another tool, sometimes it can be really helpful to make small notes to help keep track of all of the moving pieces.
 
 ---- --- -- -- --
 
