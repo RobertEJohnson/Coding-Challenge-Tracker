@@ -494,6 +494,89 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
     >If ```-=``` is used, this cannot happen since it basically says this ```x = x - (other expressions)```
 
     >The main takeaway is shorthand features like ```+=``` and ```-+``` will do all other calculations first before ```+ or -```'ing to the original value.
+
+### Challenge #8 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Create a function that takes an array of strings and returns an array with only the strings that have numbers in them. If there are no strings containing numbers, return an empty array.
+
+    Examples:
+
+        numInStr(["1a", "a", "2b", "b"]) ➞ ["1a", "2b"]
+        numInStr(["abc", "abc10"]) ➞ ["abc10"]
+        numInStr(["abc", "ab10c", "a10bc", "bcd"]) ➞ ["ab10c", "a10bc"]
+        numInStr(["this is a test", "test1"]) ➞ ["test1"]
+
+        Notes:
+        The strings can contain white spaces or any type of characters.
+        
+        Bonus:  
+        Try solving this without regex.
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my first solution: 
+
+        function numInStr(arr) {
+            return arr.filter(value => /\d/.test(value));
+        }
+
+    I also wanted to try the bonus challenge here, to try and solve it without regular expressions. Here is my solution to that.
+
+        function numInStr(arr) {
+            const testValues = [0,1,2,3,4,5,6,7,8,9];
+            const results = [];
+            for(str of arr){
+                let splitString = str.split('');
+                for(value of testValues){
+                    if(splitString.includes(String(value))){
+                        results.push(str);
+                        break;
+                    }
+                }
+            }
+            return results;
+        }
+
+    That was fun. Certainly challenging, its crazy how much extra work has to be done without a regular expression. I'm excited to see other peoples solutions for this problem without using a regular expression.
+
+    I checked out some other people's solutions and this one (see below) is my favorite for not using regular expressions.
+
+    (**Not My Solution**)
+
+        function numInStr(arr) {
+            var result = [];	
+            for(let i = 0; i < arr.length; i++){
+                for(let j = 0; j < arr[i].length; j++){
+                    var num = parseInt(arr[i][j]);			
+                    if(num){				
+                        result.push(arr[i]);
+                        break;
+                    }
+                }
+            }	
+            return result;	
+        }
+    
+    Ah! ```parseInt``` would be much cleaner to use instead of having a testValue array containing the numbers 0-9 like I had. I also like that this solution is using the indices of the for loops to check each value as opposed to splitting it off into its own array (which I never needed to do).
+
+    Overall I like that solution a lot, it's readable and clever. I think that because of my familiarity with making things readable with a ```for ... of``` loop I missed out on the opportunity to use indices in a nested way like this solution does.
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >Regular expressions again! Haha, I've never dealt with regular expressions for months and then in the last two weeks with code challenges I have been running into them fairly frequently! 
+
+    >I think the main takeaway for me from this challenge is that if I'm dealing with searching indices within ```for``` loops I should pause to consider if using a ```for ... of``` loop will be the most beneficial or not before using it. I had a cleaner solution available to for searching nested values with the built in nested indices if I included the index within the loop expressions.
+
+    Searching? Consider indexes.
+
+    Just doing a simple loop? use a ```for ... of```.
+
 ---
 
 ## Final Reflections
@@ -531,6 +614,14 @@ By using ```-=``` we are saying ```x = x - (other expressions)```
 - Don't be afraid to use Pen and Paper.
 
 It's just another tool, sometimes it can be really helpful to make small notes to help keep track of all of the moving pieces.
+
+- Choose a ```for ... of``` over a loop with indices more carefully.
+
+Are you searching or looking for nested values?  
+Consider indexes before defaulting to ```for ... of```.
+
+Are you Just doing a simple loop?  
+Use a ```for ... of``` loop.
 
 ---- --- -- -- --
 
