@@ -577,6 +577,85 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
 
     Just doing a simple loop? use a ```for ... of```.
 
+### Challenge #9 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Write a function to replace all instances of character ```c1``` with character ```c2``` and vice versa.
+
+    Examples:
+
+        doubleSwap( "aabbccc", "a", "b") ➞ "bbaaccc"
+        doubleSwap("random w#rds writt&n h&r&", "#", "&")
+        ➞ "random w&rds writt#n h#r#"
+        doubleSwap("128 895 556 788 999", "8", "9")
+        ➞ "129 985 556 799 888"
+
+        Notes:
+        Both characters will show up at least once in the string.
+
+=== "Solution"
+    
+    **Solution:**  
+
+    I know there is away to do this with regular expressions and ```.replace()```, but since I'm not familiar with it I'm going to try to make a solution with out it first before I learn about it. Here's my first solution: 
+
+        function doubleSwap(str, c1, c2) {
+            let spreadString = [...str];
+            for(let i = 0; i<str.length; i++){
+                switch(str[i]){
+                    case c1:
+                        spreadString.splice(i,1,c2);
+                        break;
+                    case c2:
+                        spreadString.splice(i,1,c1);
+                        break;
+                }
+            }
+            return spreadString.join('');
+        }
+
+    Overall I'm pretty happy with this solution, having to change its data type to an array and back into a string makes me think there are better ways out there though. As far as workable solutions go though, I think this will do just fine :))
+
+    I dug into ```replace()``` for regular expression use and updated my updated solution to this:
+
+        function doubleSwap(str, c1, c2) {
+            regex = new RegExp(`${c1}|${c2}`, 'g');
+            return str.replace(regex, char=>{
+                    switch(char){
+                            case c1:
+                                    return c2;
+                            default:
+                                    return c1;
+                    }
+            })
+        }
+
+    For the most part this solution works well, but if a user inputs a reserved character for regular expressions its going to break. I was partially on my way to fix that but it's going to end up with a lot more code than my first solution. I'll have to do a check for both ```c1``` and ```c2``` and if they are any of these reserved characters:
+
+    ```[ \ ^ $ . | ? * + ( )```
+
+    I'll have to add an escape character in front of them. For now my solution will do, I think that I will see much more condense solutions once I take a look at others' code which I'm going to do now.
+
+    I see other solutions along this (see below) line, though a little more spacious:
+
+    (**Not My Solution**)
+
+        const doubleSwap = (str, c1, c2) => [...str].map(v => v === c1 ? c2 : v === c2 ? c1 : v).join('');
+
+    I really like the idea of using ```.map()```, I'm assuming its a little more efficient than the splicing I'm doing. I'm still not a big fan of chaining ternary operators together but I have a feeling that maybe its not that big of a deal readability-wise. I'll have to bring it up to some more experienced developers and get their inputs on it. 
+    
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >No major notes here. 
+    
+    >If I were to do this problem again in the future, I think I would go for an approach that uses ```.map()``` since I think it flows better and can avoid some variable declarations.
+    
+    >Besides that, just one thing stands out here for me. Regular expressions can be short and simple, or possibly quite intense if you have to account for possible special reserved regex inputs being used. So sometimes they're not worth the challenge it might take to implement them. It's a tool that is pretty situational, gaining a bit more experience with them will make it easier to see appropriate places to use them.
+
 ---
 
 ## Final Reflections
