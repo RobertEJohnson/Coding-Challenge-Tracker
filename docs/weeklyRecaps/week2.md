@@ -656,6 +656,114 @@ These are all of the challenges, solutions, notes, and reflections from Monday O
     
     >Besides that, just one thing stands out here for me. Regular expressions can be short and simple, or possibly quite intense if you have to account for possible special reserved regex inputs being used. So sometimes they're not worth the challenge it might take to implement them. It's a tool that is pretty situational, gaining a bit more experience with them will make it easier to see appropriate places to use them.
 
+### Challenge #10 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Abigail and Benson are playing Rock, Paper, Scissors.
+
+    Each game is represented by an array of length 2, where the first element represents what Abigail played and the second element represents what Benson played.
+
+    Given a sequence of games, determine who wins the most number of matches. If they tie, output "Tie".
+
+    R stands for Rock
+    P stands for Paper
+    S stands for Scissors
+
+    Examples:
+
+        calculateScore([["R", "P"], ["R", "S"], ["S", "P"]]) ➞ "Abigail"
+
+        // Ben wins the first game (Paper beats Rock).
+        // Abigail wins the second game (Rock beats Scissors).
+        // Abigail wins the third game (Scissors beats Paper). 
+        // Abigail wins 2/3.
+
+        calculateScore([["R", "R"], ["S", "S"]]) ➞ "Tie"
+
+        calculateScore([["S", "R"], ["R", "S"], ["R", "R"]]) ➞ "Tie"
+
+=== "Solution"
+    
+    **Solution:**  
+    Here's my first solution: 
+
+        function calculateScore(games) {
+            const results = [];
+            for(match of games){
+                const a = match[0];
+                const b = match[1];
+                const outcome = a === b ? 'Tie': 
+                    a === 'R' && b === 'S' ? 'Abigail':
+                    a === 'S' && b === 'P' ? 'Abigail':
+                    a === 'P' && b === 'R' ? 'Abigail':
+                    'Benson';
+                results.push(outcome);
+            }
+            const abigailWins = results.filter(x=>x==='Abigail').length;
+            const bensonWins = results.filter(x=>x==='Benson').length;
+            const ties = results.filter(x=>x==='Tie').length;
+            return abigailWins > bensonWins ? 'Abigail' : 
+                abigailWins < bensonWins ? 'Benson': 'Tie';
+        }
+
+    It's very rough, but I'm getting better at just making a solution to solve the problem first, then refining it later.
+
+    Here's the solution after solving addressing having to filter through the same array three times, and condensing it into one reduce. I also removed the names from all the ternary operators except the final return.
+
+        function calculateScore(games) {
+            const results = [];
+            for(match of games){
+                const a = match[0];
+                const b = match[1];
+                const winner = a === b ? 'Tie': 
+                    a === 'R' && b === 'S' ? 'a':
+                    a === 'S' && b === 'P' ? 'a':
+                    a === 'P' && b === 'R' ? 'a':
+                    'b';
+                results.push(winner);
+            }
+            const finalScore = results.reduce((score, win)=>{
+                return win === 'a' ? score += 1:
+                    win === 'b' ? score -= 1: 
+                    score = score; 
+                },0)
+            return finalScore > 0 ? 'Abigail' : 
+                finalScore < 0 ? 'Benson': 'Tie';
+        }
+
+    I love that I was able to use ```.reduce()``` in a clever way to be able to condense what I was otherwise storing in three variables and before having to filter the same array three times. I remember writing about some really cool reduce usage before and how they were able to return one value when I thought it was impossible to use reduce, looks like I'm learning! Woot!
+
+    I submitted the above solution, and took a look at other peoples solutions. It looks like I wasn't the only person to think of tracking one number whether its positive or negative or zero to determine the outcome. I did realize though, I could've made this whole solution without a ```.reduce()``` method if I just used a number from the very beginning. 
+    
+    Here's my final updated solution for this challenge,
+
+        function calculateScore(games) {
+            let finalScore = 0;
+            for(match of games){
+                const a = match[0];
+                const b = match[1];
+                a === b ? finalScore = finalScore: 
+                a === 'R' && b === 'S' ? finalScore += 1:
+                a === 'S' && b === 'P' ? finalScore += 1:
+                a === 'P' && b === 'R' ? finalScore += 1:
+                finalScore -= 1;
+            }
+            return finalScore > 0 ? 'Abigail' : 
+                finalScore < 0 ? 'Benson': 'Tie';
+        }
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >I'm proud that I just finished a solution without trying to refine it right away. I still think I need to get better at spending a minute or two determining the outcome cases before I hop into problem solving, that would also help me come up with solutions quicker. 
+
+    >I think the refinement process I get to go through if I just get it up and running first is actually really helpful. If I don't make it the most efficient or best written at first I'm getting a lot of experience looking for potential rewrites that I otherwise don't get.
+
+    >Woot! I'll keep improving!
+
 ---
 
 ## Final Reflections
@@ -701,6 +809,12 @@ Consider indexes before defaulting to ```for ... of```.
 
 Are you Just doing a simple loop?  
 Use a ```for ... of``` loop.
+
+- Write simple solutions first
+
+I think the refinement process I get to go through if I just get a solution up and running first, with it being very rough, is actually really helpful. If I don't make it the most efficient or best written solution at first I'm getting a lot of experience looking for potential rewrites that I otherwise don't get. 
+
+It also gets the code-flow running and overcomes potential coder's block. I plan to keep starting with rough solutions. :)
 
 ---- --- -- -- --
 
