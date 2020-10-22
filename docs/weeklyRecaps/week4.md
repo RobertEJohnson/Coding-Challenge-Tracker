@@ -174,7 +174,54 @@ These are all of the challenges, solutions, notes, and reflections from (Month D
     >The ```+``` unary operator can be used to drop zeros! That's awesome! 
 
     >Also, I got rusty on the ```toFixed``` method, so I'm glad I got some more experience using that again.
+
+### Challenge #4 {: .challenge .challenge--edabit}
+
+=== "Code Challenge"
+
+    **Challenge:**  
+    Write a function that returns an anonymous function, which transforms its input by adding a particular suffix at the end.
+
+    Examples:
+
+        add_ly = add_suffix("ly")
+        add_ly("hopeless") ➞ "hopelessly"
+        add_ly("total") ➞"totally"
+        add_less = add_suffix("less")
+        add_less("fear") ➞ "fearless"
+        add_less("ruth") ➞ "ruthless"
+
+=== "Solution"
     
+    **Solution:**  
+    Here's my first solution: 
+
+        function add_suffix(suffix) {
+            return (name)=>{
+                return name + suffix;
+            }
+        }
+
+    I submitted this solution, but I should've spent a little more time on this function, I made a few mistakes.
+
+    First, I should have a better name for the parameter ```name``` something like ```word``` or ```string``` would work.
+
+    Second, I don't need to have a code block for the anonymous function and the return within. That can be done implicitly since there is only on expression.
+
+    Here's my updated solution:
+
+        function add_suffix(suffix) {
+            return (word) => word + suffix;
+        }
+
+    Looking at other people's solutions I don't see anything else I'd rather add, I think this solution is great! :)
+
+=== "Learning Notes"
+
+    **Learning Notes:**  
+
+    >Pause, and do a check for unneeded code and poorly phrased things. It doesn't happen naturally, at least yet, the space has to be made for the refinement if I want it. It'll probably come more naturally when I get into a better habit of pausing before submitting.
+
 ---
 
 ## Final Reflections
